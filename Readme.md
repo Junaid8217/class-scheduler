@@ -6,14 +6,12 @@ A full-stack class scheduling web application that allows teachers to create tim
 
 ## 👤 Credentials (Login)
 
-> The app uses role-based access without a traditional login form. Credentials are pre-set in the code:
+| Role    | Username    | Password     |
+|---------|-------------|--------------|
+| Teacher | `mr.rahman` | `teacher123` |
+| Student | `rahim`     | `student123` |
 
-| Role    | Name / Username | Password       |
-|---------|-----------------|----------------|
-| Teacher | `Mr. Rahman`    | *(no password — click "Login as Teacher")* |
-| Student | `Rahim`         | *(no password — click "Login as Student")* |
-
-Simply open the app and click the appropriate role button on the home screen.
+Open the app, click your role button, then enter the credentials above.
 
 ---
 
