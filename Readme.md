@@ -34,7 +34,24 @@ cd class-scheduler
 
 ---
 
-### 2. Run the Backend
+### 2. Configure the Backend Environment
+
+The backend requires a MongoDB Atlas connection string stored in a `.env` file.
+
+```bash
+cd class-scheduler-backend
+cp .env.example .env
+```
+
+Then open `.env` and replace the placeholder with your actual MongoDB Atlas URI:
+
+```
+MONGODB_URI= mongodb+srv://classScheduler:ddzmO5FTNCJyRilH@cluster0.gv2lthx.mongodb.net/?appName=Cluster0
+```
+
+---
+
+### 3. Run the Backend
 
 ```bash
 cd class-scheduler-backend
@@ -44,11 +61,11 @@ npm start
 
 The backend server will start at: **http://localhost:5000**
 
-> MongoDB Atlas is already configured in the code — no `.env` setup needed.
+You should see `MongoDB Connected Successfully!` in the terminal.
 
 ---
 
-### 3. Run the Frontend
+### 4. Run the Frontend
 
 Open a **new terminal tab/window**:
 
@@ -90,9 +107,11 @@ Built with **React + Vite**:
 - **Teacher Dashboard** (`TeacherDashboard.jsx`)
   - Add new time slots by selecting a date and start time
   - View all slots with their status (Available / Booked) highlighted in color
+  - See who booked each slot (student name shown inline)
+  - Delete available slots
   - Real-time feedback with success and error messages
 - **Student View** (`StudentView.jsx`)
-  - Browse all available slots
+  - Browse all available slots grouped by date
   - Book a slot with a single click
 - **API Layer** (`src/api/index.js`) — Centralized Axios calls to the backend
 
@@ -103,11 +122,12 @@ Built with **React + Vite**:
 ```
 class-scheduler/
 ├── class-scheduler-backend/
+│   ├── .env.example      # Environment variable template (copy to .env)
 │   ├── index.js          # Express server & all API routes
 │   └── package.json
 └── class-scheduler-client/
     ├── src/
-    │   ├── App.jsx                        # Role selection & routing
+    │   ├── App.jsx                        # Role selection, login & routing
     │   ├── api/index.js                   # Axios API functions
     │   └── components/
     │       ├── TeacherDashboard.jsx       # Teacher UI
@@ -123,4 +143,5 @@ class-scheduler/
 - **MongoDB Atlas** (cloud-hosted)
 - Database: `class-scheduler`
 - Collections: `slots`, `bookings`
-- Connection is pre-configured in `class-scheduler-backend/index.js`
+- Connection string is loaded from `.env` via `dotenv`
+- **Never commit your `.env` file** — it is listed in `.gitignore`
