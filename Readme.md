@@ -2,6 +2,8 @@
 
 A full-stack class scheduling web application that allows teachers to create time slots and students to book them — built with **React (Vite)** on the frontend and **Node.js / Express** on the backend, backed by **MongoDB Atlas**.
 
+🌐 Live Demo: https://superb-madeleine-95806c.netlify.app
+
 ---
 
 ## 👤 Credentials (Login)
