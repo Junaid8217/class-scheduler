@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 const app = express();
@@ -9,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // ── MongoDB Atlas Connection ──────────────────────────────────────────────────
-const uri = "mongodb+srv://classScheduler:ddzmO5FTNCJyRilH@cluster0.gv2lthx.mongodb.net/?appName=Cluster0";
+const uri = process.env.MONGODB_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
