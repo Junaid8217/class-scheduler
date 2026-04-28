@@ -112,20 +112,29 @@ function LoginForm({ role, onSuccess, onCancel }) {
             </div>
           )}
 
+          {/* Demo credentials autofill */}
+          <button
+            onClick={() => { setUsername(CREDENTIALS[role].username); setPassword(CREDENTIALS[role].password); setError(''); }}
+            style={{
+              background: cfg.light, color: cfg.color,
+              border: `1.5px dashed ${cfg.color}88`, borderRadius: '10px',
+              padding: '10px', fontSize: '13px', fontWeight: '600', fontFamily: 'inherit',
+              cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+            }}
+          >
+            ⚡ Use Demo Credentials
+          </button>
+
           <button onClick={handleLogin} disabled={loading} style={{
             background: loading ? c.border2 : `linear-gradient(135deg, ${cfg.color} 0%, ${role === 'teacher' ? c.indigoDk : '#047857'} 100%)`,
             color: loading ? c.inkMuted : 'white', border: 'none', borderRadius: '12px',
             padding: '13px', fontSize: '15px', fontWeight: '600', fontFamily: 'inherit',
-            cursor: loading ? 'not-allowed' : 'pointer', transition: 'all .2s', marginTop: '4px',
+            cursor: loading ? 'not-allowed' : 'pointer', transition: 'all .2s',
             boxShadow: loading ? 'none' : `0 4px 16px ${cfg.color}44`,
           }}>
             {loading ? 'Signing in…' : `Sign in as ${cfg.label}`}
           </button>
         </div>
-
-        <p style={{ textAlign: 'center', color: c.inkMuted, fontSize: '12px', marginTop: '20px' }}>
-          Hint: <span style={{ fontFamily: 'monospace', color: c.inkSoft }}>{CREDENTIALS[role].username}</span> / <span style={{ fontFamily: 'monospace', color: c.inkSoft }}>{CREDENTIALS[role].password}</span>
-        </p>
       </div>
     </div>
   );

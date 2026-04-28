@@ -48,7 +48,7 @@ cp .env.example .env
 Then open `.env` and replace the placeholder with your actual MongoDB Atlas URI:
 
 ```
-MONGODB_URI= mongodb+srv://classScheduler:ddzmO5FTNCJyRilH@cluster0.gv2lthx.mongodb.net/?appName=Cluster0
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/...
 ```
 
 ---
