@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
 import { getSlots, bookSlot } from '../api';
 
+
+// Convert "HH:MM" 24h to "h:MM AM/PM"
+const to12h = (time) => {
+  if (!time) return '';
+  const [h, m] = time.split(':').map(Number);
+  const period = h >= 12 ? 'PM' : 'AM';
+  const hour   = h % 12 || 12;
+  return `${hour}:${String(m).padStart(2, '0')} ${period}`;
+};
+
 const c = {
   indigo:'#4f3ff0', indigoDk:'#3628c8', indigoLt:'#ede9ff',
   emerald:'#059669', emeraldLt:'#d1fae5',
@@ -117,11 +127,11 @@ export default function StudentView({ studentName, onBack }) {
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                       <div style={{ background: c.emeraldLt, borderRadius: '10px', padding: '8px 12px', textAlign: 'center' }}>
-                        <div style={{ fontSize: '14px', fontWeight: '700', color: c.emerald }}>{slot.startTime}</div>
+                        <div style={{ fontSize: '14px', fontWeight: '700', color: c.emerald }}>{to12h(slot.startTime)}</div>
                         <div style={{ fontSize: '11px', color: c.emerald, opacity: .7 }}>15 min</div>
                       </div>
                       <div>
-                        <div style={{ fontSize: '14px', fontWeight: '500', color: c.ink }}>{slot.startTime} – {slot.endTime}</div>
+                        <div style={{ fontSize: '14px', fontWeight: '500', color: c.ink }}>{to12h(slot.startTime)} – {to12h(slot.endTime)}</div>
                         <div style={{ fontSize: '12px', color: c.inkMuted, marginTop: '2px' }}>Available · 15 minutes</div>
                       </div>
                     </div>

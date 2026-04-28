@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
 import { getSlots, createSlot, deleteSlot, getBookings } from '../api';
 
+
+// Convert "HH:MM" 24h to "h:MM AM/PM"
+const to12h = (time) => {
+  if (!time) return '';
+  const [h, m] = time.split(':').map(Number);
+  const period = h >= 12 ? 'PM' : 'AM';
+  const hour   = h % 12 || 12;
+  return `${hour}:${String(m).padStart(2, '0')} ${period}`;
+};
+
 const c = {
   indigo:'#4f3ff0', indigoDk:'#3628c8', indigoLt:'#ede9ff',
   emerald:'#059669', emeraldLt:'#d1fae5',
@@ -165,11 +175,11 @@ export default function TeacherDashboard({ teacherName, onBack }) {
                       {slot.date.slice(5).replace('-', '/')}
                     </div>
                     <div style={{ fontSize: '12px', color: isBooked ? c.indigo : c.emerald, fontWeight: '500', marginTop: '2px' }}>
-                      {slot.startTime}
+                      {to12h(slot.startTime)}
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '14px', fontWeight: '500', color: c.ink }}>{slot.startTime} – {slot.endTime}</div>
+                    <div style={{ fontSize: '14px', fontWeight: '500', color: c.ink }}>{to12h(slot.startTime)} – {to12h(slot.endTime)}</div>
                     {bookedBy
                       ? <div style={{ fontSize: '12px', color: c.inkMuted, marginTop: '2px' }}>👤 Booked by <strong style={{ color: c.inkSoft }}>{bookedBy}</strong></div>
                       : <div style={{ fontSize: '12px', color: c.inkMuted, marginTop: '2px' }}>15 min · Open</div>
